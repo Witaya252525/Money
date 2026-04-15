@@ -1,6 +1,12 @@
 body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-.table input[type=number] { width: 120px; max-width: 140px; }
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 #monthsBody td { vertical-align: middle; }
+/* Make number inputs fill the table cell so columns align with headers */
+.table input[type=number] { width: 100%; box-sizing: border-box; }
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Right-align numeric text inside inputs placed in right-aligned cells */
+.table td.text-end input { text-align: right; }
 .card-title { margin-bottom: 0.75rem; }
+.card-title { margin-bottom: 0.75rem; }
+
 #moneyChart { width: 100% !important; }
