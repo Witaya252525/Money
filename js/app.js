@@ -118,6 +118,23 @@ function onClear(){
   updateChart(zeros);
 }
 
+function onDownload(){
+  if(!chart) return;
+  try{
+    chart.update();
+    const url = chart.toBase64Image();
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'buck2bar-chart.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }catch(e){
+    console.error('Download failed', e);
+    showFeedback('Unable to download chart.');
+  }
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   createInputs();
   const existing = loadData();
@@ -127,6 +144,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   byId('saveBtn').addEventListener('click', onSave);
   byId('randomBtn').addEventListener('click', onRandomize);
   byId('clearBtn').addEventListener('click', onClear);
+  const dl = byId('downloadBtn');
+  if(dl) dl.addEventListener('click', onDownload);
 
   // Update chart when Chart tab becomes visible
   const chartTab = document.querySelector('#chart-tab');

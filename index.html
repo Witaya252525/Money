@@ -65,7 +65,12 @@
         </div>
 
         <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="chart-tab">
-          <div class="card p-3">
+          <div class="card p-3 position-relative">
+            <div class="d-flex justify-content-end mb-2">
+              <button id="downloadBtn" type="button" class="btn btn-outline-secondary btn-sm" title="Download chart">
+                <i class="bi bi-download"></i>
+              </button>
+            </div>
             <canvas id="moneyChart" height="240"></canvas>
           </div>
         </div>
