@@ -1,4 +1,6 @@
-/* Minimal custom styles for Buck2Bar */
-body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-.table input { max-width: 160px; }
-.chart-legend { display: flex; gap: 1rem; align-items: center; }
+body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+.table input[type=number] { width: 120px; max-width: 140px; }
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+#monthsBody td { vertical-align: middle; }
+.card-title { margin-bottom: 0.75rem; }
+#moneyChart { width: 100% !important; }

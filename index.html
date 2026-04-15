@@ -4,75 +4,76 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Buck2Bar — Income & Expense</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind (Play CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body class="bg-light">
-    <div class="container py-4">
-      <h1 class="mb-3">Buck2Bar</h1>
+    <header class="py-3 bg-white shadow-sm">
+      <div class="container d-flex align-items-center gap-3">
+        <i class="bi bi-currency-dollar fs-2 text-success"></i>
+        <h1 class="h4 mb-0">Buck2Bar</h1>
+      </div>
+    </header>
 
+    <main class="container my-4">
       <ul class="nav nav-tabs" id="mainTabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="data-tab" data-bs-toggle="tab" data-bs-target="#data" type="button" role="tab">Data</button>
+          <button class="nav-link active" id="data-tab" data-bs-toggle="tab" data-bs-target="#data" type="button" role="tab" aria-controls="data" aria-selected="true">
+            <i class="bi bi-list-check me-1"></i> Data
+          </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab">Chart</button>
+          <button class="nav-link" id="chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="chart" aria-selected="false">
+            <i class="bi bi-bar-chart-line me-1"></i> Chart
+          </button>
         </li>
       </ul>
 
-      <div class="tab-content border border-top-0 rounded-bottom p-3 bg-white" id="mainTabsContent">
+      <div class="tab-content mt-3">
         <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-          <p class="text-muted">Enter income and expense values for each month. Decimals allowed.</p>
-          <div class="table-responsive">
-            <table class="table table-sm align-middle">
-              <thead>
-                <tr>
-                  <th>Month</th>
-                  <th class="text-end">Income</th>
-                  <th class="text-end">Expense</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Jan</td><td class="w-50"><input id="income-0" class="form-control text-end" type="number" step="0.01" min="0"/></td><td class="w-50"><input id="expense-0" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Feb</td><td><input id="income-1" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-1" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Mar</td><td><input id="income-2" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-2" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Apr</td><td><input id="income-3" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-3" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>May</td><td><input id="income-4" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-4" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Jun</td><td><input id="income-5" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-5" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Jul</td><td><input id="income-6" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-6" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Aug</td><td><input id="income-7" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-7" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Sep</td><td><input id="income-8" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-8" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Oct</td><td><input id="income-9" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-9" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Nov</td><td><input id="income-10" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-10" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-                <tr><td>Dec</td><td><input id="income-11" class="form-control text-end" type="number" step="0.01" min="0"/></td><td><input id="expense-11" class="form-control text-end" type="number" step="0.01" min="0"/></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="d-flex gap-2 mt-2">
-            <button id="updateBtn" class="btn btn-primary">Update Chart</button>
-            <button id="resetBtn" class="btn btn-outline-secondary">Reset</button>
-            <div class="ms-auto text-muted align-self-center">Values saved to localStorage</div>
-          </div>
+          <form id="dataForm">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="table-responsive">
+                  <table class="table table-sm align-middle">
+                    <thead>
+                      <tr>
+                        <th>Month</th>
+                        <th class="text-end">Income</th>
+                        <th class="text-end">Expense</th>
+                      </tr>
+                    </thead>
+                    <tbody id="monthsBody"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card p-3">
+                  <h5 class="card-title">Actions</h5>
+                  <div class="d-grid gap-2">
+                    <button id="randomBtn" type="button" class="btn btn-outline-primary">Randomize</button>
+                    <button id="saveBtn" type="button" class="btn btn-primary">Save / Update</button>
+                    <button id="clearBtn" type="button" class="btn btn-outline-danger">Clear Data</button>
+                  </div>
+                  <div id="formFeedback" class="mt-3 text-danger small"></div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
 
         <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="chart-tab">
-          <div class="mb-2">Grouped bar chart: Income vs Expense</div>
           <div class="card p-3">
-            <canvas id="buckChart" height="200"></canvas>
+            <canvas id="moneyChart" height="240"></canvas>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/chart.js"></script>
-    <script src="js/main.js"></script>
-    <!-- Bootstrap JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
