@@ -22,7 +22,19 @@ function onLogin(){
     feedbackEl.textContent = 'Password must be at least 10 characters and include one uppercase and one special character.'; return;
   }
   feedbackEl.textContent = '';
-  prompt('Login successful — email: ' + email);
+  // Show success toast and clear inputs
+  const toastEl = byId('loginToast');
+  const toastBody = byId('loginToastBody');
+  if(toastBody) toastBody.textContent = 'Login successful — email: ' + email;
+  if(toastEl){
+    const bsToast = bootstrap.Toast.getOrCreateInstance(toastEl);
+    bsToast.show();
+  } else {
+    alert('Login successful — email: ' + email);
+  }
+  // Clear sensitive inputs
+  if(byId('passwordInput')) byId('passwordInput').value = '';
+  if(byId('emailInput')) byId('emailInput').value = '';
 }
 
 let chart = null;
