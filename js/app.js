@@ -1,6 +1,28 @@
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const STORAGE_KEY = 'buck2bar-data-v1';
 
+// Login validation patterns
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // min 8 chars, one upper, one lower, one digit
+
+function validateEmail(email){ return EMAIL_REGEX.test(email); }
+function validatePassword(pw){ return PASSWORD_REGEX.test(pw); }
+
+function onLogin(){
+  const feedbackEl = byId('loginFeedback');
+  if(!feedbackEl) return;
+  const email = (byId('emailInput')?.value || '').trim();
+  const pw = (byId('passwordInput')?.value || '');
+  if(!validateEmail(email)){
+    feedbackEl.textContent = 'Invalid email format.'; return;
+  }
+  if(!validatePassword(pw)){
+    feedbackEl.textContent = 'Password must be 8+ chars with uppercase, lowercase, and digit.'; return;
+  }
+  feedbackEl.textContent = '';
+  prompt('Login successful — email: ' + email);
+}
+
 let chart = null;
 
 function byId(id){ return document.getElementById(id); }
@@ -144,6 +166,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   byId('saveBtn').addEventListener('click', onSave);
   byId('randomBtn').addEventListener('click', onRandomize);
   byId('clearBtn').addEventListener('click', onClear);
+  // Login handlers
+  const loginBtn = byId('loginBtn');
+  if(loginBtn) loginBtn.addEventListener('click', onLogin);
+  const pwInput = byId('passwordInput');
+  if(pwInput) pwInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ e.preventDefault(); onLogin(); } });
   const dl = byId('downloadBtn');
   if(dl) dl.addEventListener('click', onDownload);
 
