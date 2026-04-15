@@ -3,7 +3,9 @@ const STORAGE_KEY = 'buck2bar-data-v1';
 
 // Login validation patterns
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // min 8 chars, one upper, one lower, one digit
+
+// Password: minimum 10 chars, at least one uppercase and one special character
+const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?`~]).{10,}$/;
 
 function validateEmail(email){ return EMAIL_REGEX.test(email); }
 function validatePassword(pw){ return PASSWORD_REGEX.test(pw); }
@@ -17,7 +19,7 @@ function onLogin(){
     feedbackEl.textContent = 'Invalid email format.'; return;
   }
   if(!validatePassword(pw)){
-    feedbackEl.textContent = 'Password must be 8+ chars with uppercase, lowercase, and digit.'; return;
+    feedbackEl.textContent = 'Password must be at least 10 characters and include one uppercase and one special character.'; return;
   }
   feedbackEl.textContent = '';
   prompt('Login successful — email: ' + email);
